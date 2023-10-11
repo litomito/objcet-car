@@ -1,6 +1,5 @@
 const container2 = document.getElementById("container2");
 const btn = document.getElementById("btn");
-let currentCarIndex = 0;
 
 class Car {
     constructor(img, car, model, price, year) {
@@ -107,17 +106,28 @@ carsGroup = [
 ]
 
 
-btn.addEventListener("click", () => {
-    const currentCar = carsGroup[currentCarIndex];
-    let htmlEl = ` <div>
-                    <img src="${currentCar.img}" alt="car" class="car-img" >
-                    <h2>${currentCar.car}</h2>
-                    <p> Model: ${currentCar.model}</p>
-                    <p> Price: ${currentCar.price}</p>
-                    <p> Year: ${currentCar.year}</p>
-                </div>`;
 
-    container2.innerHTML = htmlEl
+carsGroup.map((item) => {
+    let carImg = document.createElement('img');
+    carImg.src = item.img;
 
-    currentCarIndex += 1 % carsGroup.length;
+    let carName = document.createElement('h2');
+    carName.textContent = item.car;
+
+    let carModel = document.createElement('p');
+    carModel.textContent = item.model;
+
+    let carPrice = document.createElement('p');
+    carPrice.textContent = item.price;
+
+    let carYear = document.createElement('p');
+    carYear.textContent = item.year;
+
+    container2.appendChild(carImg);
+    container2.appendChild(carName);
+    container2.appendChild(carModel);
+    container2.appendChild(carPrice);
+    container2.appendChild(carYear);
 });
+
+
